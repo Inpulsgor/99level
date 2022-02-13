@@ -11,8 +11,8 @@ export enum REQUEST_STATUS {
 
 export enum ROUTES {
   LOGIN = '/',
-  REGISTRATION = '/registration',
-  ANALYTICS = '/analytics',
+  REGISTRATION = 'registration',
+  ANALYTICS = 'analytics',
   NOT_FOUND = '*',
 }
 

@@ -1,10 +1,6 @@
 import { AxiosError, AxiosResponse } from "axios";
 import { FailurePayload } from "./types";
 
-export const isAxiosError = (candidate: any): candidate is AxiosError => {
-  return candidate.isAxiosError === true;
-};
-
 export const mockSuccess: (data: any) => Promise<AxiosResponse<any, any>> = (
   data: any,
 ) =>
@@ -25,6 +21,10 @@ export const mockError: (message: string) => Promise<AxiosError<any, any>> = (
     config: {},
     isAxiosError: true,
   });
+
+export const isAxiosError = (candidate: any): candidate is AxiosError => {
+	return candidate.isAxiosError === true;
+};
 
 export const getErrorData: (e: unknown) => FailurePayload = (e: unknown) => {
   const eData: FailurePayload = {

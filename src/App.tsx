@@ -2,13 +2,14 @@ import { FC, useEffect, Suspense } from 'react';
 import { useNavigate } from "react-router-dom";
 // import { useDispatch } from "react-redux";
 import { Route, Routes } from "react-router-dom";
-
-import { Header, MainWrapper} from 'common/layout';
-import Loader from 'common/components/Loader/Loader';
+import { Layout } from 'common/layout';
+import { Login, Registration, Analytics, NotFound } from 'pages';
+import { Loader } from 'common/components';
 import { useLoading } from 'common/hooks/useLoader';
 import { useAuth } from 'common/hooks/useAuth';
-// import { ROUTES } from 'types/enum'
-import { routes } from './routes';
+import { PublicRoute } from 'common/hoc/PublicRoute';
+import { PrivateRoute } from 'common/hoc/PrivateRoute';
+import { ROUTES } from 'types/enum';
 
 const App: FC = () => {
 	const navigate = useNavigate();
@@ -17,28 +18,25 @@ const App: FC = () => {
 	const { accessToken, isAuthenticated } = useAuth();
 
 	useEffect(() => {
-		// if (!isAuthenticated) {
-		// 	navigate(ROUTES.LOGIN)
-		// }
-
 		console.log('isAuthenticated', isAuthenticated);
 		console.log('accessToken', accessToken);
 	}, [accessToken, isAuthenticated, navigate])
 
   return (
-		<>
-			{isAuthenticated && <Header />}
-				<Suspense fallback={<Loader isLoading />}>
-					<MainWrapper>
-						{isLoading && <Loader isLoading />}
-						<Routes>
-							{routes.map(({ path, component: Component }) => (
-								<Route key={path} path={path} element={<Component />}/>
-							))}
-						</Routes>
-					</MainWrapper>
-				</Suspense>
-		</>
+		<Suspense fallback={<Loader isLoading />}>
+			{isLoading && <Loader isLoading />}
+			<Routes>
+				<Route path={ROUTES.LOGIN} element={<Layout />}>
+					<Route index element={<Login />} />
+					<Route path={ROUTES.LOGIN} element={
+						<PublicRoute restricted redirect={ROUTES.ANALYTICS} component={Login} />} />
+					<Route path={ROUTES.REGISTRATION} element={
+						<PublicRoute restricted redirect={ROUTES.ANALYTICS} component={Registration} />}/>
+					<Route path={ROUTES.ANALYTICS} element={<PrivateRoute component={Analytics} />} />
+					<Route path={ROUTES.NOT_FOUND} element={<NotFound />}/>
+				</Route>
+			</Routes>
+		</Suspense>
   );
 }
 

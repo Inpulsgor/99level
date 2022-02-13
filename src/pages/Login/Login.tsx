@@ -12,7 +12,7 @@ const Login: FC = () => {
 				direction="column"
 				alignItems="center"
 				justifyContent="center"
-				sx={{ minHeight: '100vh' }}
+				sx={{ minHeight: '100%' }}
 			>
 				<Grid item xs={3}>
 					<LoginForm />

@@ -1,4 +1,9 @@
 {
+	"layout": {
+		"footer": {
+			"copyright": "All Rights Reserved"
+		}
+	},
 	"pages": {
 		"login": {},
 		"registration": {},

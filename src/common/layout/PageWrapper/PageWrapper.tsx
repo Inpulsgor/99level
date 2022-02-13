@@ -7,7 +7,7 @@ interface PageWrapperProps {
 
 const PageWrapper: FC<PageWrapperProps> = ({ children }) => {
   return (
-    <Container maxWidth="xl">
+    <Container maxWidth="xl" sx={{ height: "100%"}}>
       {children}
     </Container>
   );

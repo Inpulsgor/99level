@@ -12,7 +12,8 @@ const Registration: FC = () => {
 				direction="column"
 				alignItems="center"
 				justifyContent="center"
-				style={{ minHeight: '100vh' }}>
+				style={{ minHeight: '100%' }}
+			>
 				<Grid item xs={3}>
 					<SignupForm />
 				</Grid>

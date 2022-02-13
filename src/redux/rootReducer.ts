@@ -8,6 +8,7 @@ import authSlice from "entities/auth/authSlice";
 const authPersistConfig = {
   key: "auth",
   storage,
+	whiteList: ["accessToken"]
 };
 
 const rootReducer = combineReducers({

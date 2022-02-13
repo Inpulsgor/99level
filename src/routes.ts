@@ -1,48 +1,60 @@
 import { FunctionComponent, lazy } from "react";
 import { ROUTES, PAGE_LABEL } from "types/enum";
-
 interface Routes {
   label: PAGE_LABEL;
   path: ROUTES;
   component: FunctionComponent;
+	index: boolean;
 }
+
+const LoginPage = lazy(
+	() => import("pages/Login/Login" /* webpackChunkName: "LoginPage" */),
+);
+
+const RegistrationPage = lazy(
+	() =>
+		import(
+			"pages/Registration/Registration" /* webpackChunkName: "RegistrationPage" */
+		),
+)
+
+const AnalyticsPage = lazy(
+	() =>
+		import(
+			"pages/Analytics/Analytics" /* webpackChunkName: "AnalyticsPage" */
+		),
+)
+
+const NotFoundPage = lazy(
+	() =>
+		import(
+			"pages/NotFound/NotFound" /* webpackChunkName: "NotFoundPage" */
+		),
+)
 
 export const routes: Array<Routes> = [
   {
     label: PAGE_LABEL.LOGIN_PAGE,
     path: ROUTES.LOGIN,
-    component: lazy(
-      () => import("pages/Login/Login" /* webpackChunkName: "LoginPage" */),
-    ),
+    component: LoginPage,
+		index: true,
   },
   {
     label: PAGE_LABEL.REGISTRATION_PAGE,
     path: ROUTES.REGISTRATION,
-    component: lazy(
-      () =>
-        import(
-          "pages/Registration/Registration" /* webpackChunkName: "RegistrationPage" */
-        ),
-    ),
+    component: RegistrationPage,
+		index: false,
   },
   {
     label: PAGE_LABEL.ANALYTICS_PAGE,
     path: ROUTES.ANALYTICS,
-    component: lazy(
-      () =>
-        import(
-          "pages/Analytics/Analytics" /* webpackChunkName: "AnalyticsPage" */
-        ),
-    ),
+    component: AnalyticsPage,
+		index: false,
   },
   {
     label: PAGE_LABEL.NOT_FOUND_PAGE,
     path: ROUTES.NOT_FOUND,
-    component: lazy(
-      () =>
-        import(
-          "pages/NotFound/NotFound" /* webpackChunkName: "NotFoundPage" */
-        ),
-    ),
+    component: NotFoundPage,
+		index: false,
   },
 ];

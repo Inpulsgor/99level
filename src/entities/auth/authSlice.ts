@@ -6,6 +6,7 @@ import { login } from "entities/auth/authOperations";
 const initialState: AuthState = {
   isAuthenticated: false,
   accessToken: null,
+	currentUser: null,
   error: null,
   status: null,
 };
@@ -25,6 +26,8 @@ export const authSlice = createSlice({
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.status = REQUEST_STATUS.SUCCEEDED;
+			state.isAuthenticated = true;
+			state.accessToken = action.payload?.data;
     });
     builder.addCase(login.rejected, (state, action) => {
       state = {
