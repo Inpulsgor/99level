@@ -2,6 +2,7 @@ import { StrictMode } from 'react';
 import ReactDOM from 'react-dom';
 import { BrowserRouter } from "react-router-dom";
 import { Provider } from "react-redux";
+import { PersistGate } from 'redux-persist/integration/react';
 import { CssBaseline, ThemeProvider } from "@mui/material";
 import { HelmetProvider } from "react-helmet-async";
 import reportWebVitals from './reportWebVitals';
@@ -13,14 +14,16 @@ import './index.css';
 ReactDOM.render(
   <StrictMode>
 		<ThemeProvider theme={theme}>
-		<CssBaseline />
-		<Provider store={store.store}>
-			<BrowserRouter>
-				<HelmetProvider>
-					<App />
-				</HelmetProvider>
-			</BrowserRouter>
-		</Provider>
+			<CssBaseline />
+			<Provider store={store.store}>
+				<PersistGate loading={null} persistor={store.persistor}>
+					<BrowserRouter>
+						<HelmetProvider>
+							<App />
+						</HelmetProvider>
+					</BrowserRouter>
+				</PersistGate>
+			</Provider>
 		</ThemeProvider>
   </StrictMode>,
   document.getElementById('root')

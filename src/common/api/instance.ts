@@ -1,5 +1,5 @@
 import axios from "axios";
-import { RootState } from "redux/rootReducer";
+import { RootState } from "redux/store";
 
 const BASE_URL = process.env.REACT_APP_BACKEND_API;
 
