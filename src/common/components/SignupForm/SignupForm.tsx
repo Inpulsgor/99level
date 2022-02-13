@@ -1,13 +1,33 @@
-import { FC, FormEvent } from 'react';
-import { useNavigate } from "react-router-dom";
-import { Box, Avatar, Button, TextField, FormControlLabel, Checkbox, Link, Grid, Typography } from '@mui/material';
+import { FC } from 'react';
+import { Link as RouterLink } from "react-router-dom";
+import { useForm, Controller } from "react-hook-form";
+import { Box, Avatar, Button, TextField, FormControlLabel, Checkbox, Grid, Typography } from '@mui/material';
 import { LockOutlined as LockOutlinedIcon } from '@mui/icons-material';
 import { ROUTES } from 'types/enum';
 import styles from './SignupForm.styles';
 
+type FormData = {
+  firstName: string;
+  lastName: string;
+	email: string;
+	password: string;
+	agreement: boolean;
+};
+
+const defaultValues = {
+	firstName: "",
+	lastName: "",
+	email: "",
+	password: "",
+	agreement: false
+}
+
 const SignupForm: FC = () => {
-	const navigate = useNavigate();
-	const handleSubmit = (event: FormEvent<HTMLFormElement>) => {};
+	const { control, handleSubmit } = useForm<FormData>({
+		defaultValues
+	});
+
+	const onSubmit = (data: FormData) => console.log(data);
 
 	return (
 		<Box sx={styles.wrapper}>
@@ -19,67 +39,81 @@ const SignupForm: FC = () => {
 				Sign up
 			</Typography>
 
-			<Box component="form" noValidate onSubmit={handleSubmit} >
+			<Box component="form" onSubmit={handleSubmit(onSubmit)} >
 				<Grid container spacing={2}>
 					<Grid item xs={12} sm={6}>
-						<TextField
-							name="firstName"
+						<Controller name="firstName" control={control} render={({ field: { value, onChange } }) => (
+							<TextField
 							fullWidth
 							id="firstName"
 							label="First Name"
-						/>
+							value={value}
+							onChange={onChange}
+							/>
+						)} />
 					</Grid>
 					<Grid item xs={12} sm={6}>
-						<TextField
+						<Controller name="lastName" control={control} render={({ field: { value, onChange } }) => (
+							<TextField
 							fullWidth
 							id="lastName"
 							label="Last Name"
-							name="lastName"
-						/>
+							value={value}
+							onChange={onChange}
+							/>
+						)} />
 					</Grid>
 					<Grid item xs={12}>
-						<TextField
+						<Controller name="email" control={control} render={({ field: { value, onChange } }) => (
+							<TextField
 							fullWidth
 							id="email"
 							label="Email Address"
-							name="email"
-						/>
+							value={value}
+							onChange={onChange}
+							/>
+						)} />
 					</Grid>
 					<Grid item xs={12}>
-						<TextField
+						<Controller name="password" control={control} render={({ field: { value, onChange } }) => (
+							<TextField
 							fullWidth
-							name="password"
 							label="Password"
 							type="password"
 							id="password"
-						/>
+							value={value}
+							onChange={onChange}
+							/>
+						)} />
 					</Grid>
 					<Grid item xs={12}>
 						<FormControlLabel
-							control={<Checkbox value="allowExtraEmails" color="primary" />}
-							label="Accept registration agreement"
+							label="Accept agreement"
+							control={
+								<Controller
+									name="agreement"
+									control={control}
+									rules={{ required: true }}
+									render={({ field }) => <Checkbox {...field} />}
+								/>
+							}
 						/>
 					</Grid>
 				</Grid>
 
 				<Button
-					type="submit"
 					fullWidth
+					type="submit"
 					variant="contained"
-					sx={{ mt: 3, mb: 2 }}
+					color="secondary"
+					sx={styles.button}
 				>
 					Sign Up
 				</Button>
 
-				<Grid container justifyContent="flex-end">
-					<Grid item>
-					<Button onClick={() => navigate(ROUTES.LOGIN)}>
-						<Typography variant="body2">
-							Already have an account? Sign in
-						</Typography>
-					</Button>
-					</Grid>
-				</Grid>
+				<Button sx={styles.signin} component={RouterLink} to={ROUTES.LOGIN}>
+					Already have an account? Sign in
+				</Button>
 			</Box>
 		</Box>
 	)

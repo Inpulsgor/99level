@@ -1,11 +1,7 @@
-import { FC, DetailedHTMLProps, HTMLAttributes } from 'react';
+import { FC } from 'react';
 import { Box } from '@mui/material';
 import { format } from 'date-fns';
-
-export type FooterProps = DetailedHTMLProps<
-  HTMLAttributes<HTMLDivElement>,
-  HTMLDivElement
->;
+import { FooterProps } from './Footer.types'
 
 const Footer: FC<FooterProps> = () => {
   const currentYear = format(new Date(), 'yyyy');

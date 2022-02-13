@@ -1,31 +1,31 @@
 // eslint-disable-next-line import/named
-import { createTheme, responsiveFontSizes, Theme } from "@mui/material";
-import { grey } from "@mui/material/colors";
+import { createTheme, responsiveFontSizes, Theme } from '@mui/material';
+import { orange, grey, green, teal } from '@mui/material/colors';
 
 let theme: Theme = createTheme({
   palette: {
     primary: {
-      main: "#262626",
-      contrastText: "#FFF",
+      main: grey[800],
+      contrastText: '#FFF',
     },
     secondary: {
-      main: "#FF7F11",
-      contrastText: "#FFF",
+      main: orange[500],
+      contrastText: '#FFF',
     },
     success: {
-      main: "#ACBFA4 ",
-      contrastText: "#262626",
+      main: green[300],
+      contrastText: grey[800],
     },
     info: {
-      main: "#E2E8CE",
-      contrastText: "#262626",
+      main: teal[100],
+      contrastText: grey[800],
     },
     custom: {
-      green: "#ACBFA4",
-      amber: "#FF7F11",
-      beige: "#E2E8CE",
-      dark: "#262626",
-      red: "#FF1B1C",
+      green: '#ACBFA4',
+      amber: '#FF7F11',
+      beige: '#E2E8CE',
+      dark: '#262626',
+      red: '#FF1B1C',
     },
   },
   typography: {
@@ -36,27 +36,27 @@ let theme: Theme = createTheme({
     fontWeightBold: 700,
     h2: {
       fontFamily: "'Poppins', sans-serif",
-      fontSize: "32px",
+      fontSize: '32px',
       fontWeight: 900,
-      textTransform: "uppercase",
+      textTransform: 'uppercase',
     },
     h3: {
       fontFamily: "'Poppins', sans-serif",
-      fontSize: "18px",
+      fontSize: '18px',
       fontWeight: 900,
-      textTransform: "uppercase",
+      textTransform: 'uppercase',
     },
     h4: {
-      fontSize: "18px",
+      fontSize: '18px',
       fontWeight: 700,
     },
     body1: {
-      fontSize: "14px",
-      lineHeight: "24px",
+      fontSize: '14px',
+      lineHeight: '24px',
     },
     body2: {
-      fontSize: "13px",
-      lineHeight: "17.7px",
+      fontSize: '13px',
+      lineHeight: '17.7px',
     },
   },
   breakpoints: {

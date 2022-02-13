@@ -9,6 +9,8 @@ const Analytics: FC = () => {
 	const theme = useTheme();
 	const isMobile = useMediaQuery(theme.breakpoints.down("md"));
 
+	console.log('isMobile', isMobile)
+
 	return (
 		<>
 		  <Helmet>

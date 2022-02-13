@@ -3,10 +3,11 @@ const styles = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    maxWidth: "600px",
   },
   avatar: { m: 1, bgcolor: "secondary.main" },
   button: { mt: 3, mb: 2 },
-  signup: { display: "flex", ml: "auto" },
+  signup: { display: "flex", ml: "auto", fontSize: "12px" },
 };
 
 export default styles;

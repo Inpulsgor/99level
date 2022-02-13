@@ -58,11 +58,9 @@ const LoginForm: FC = () => {
 					Sign In
 				</Button>
 
-				<Box sx={styles.signup} justifyContent="flex-end">
-					<Button component={RouterLink} to={ROUTES.REGISTRATION}>
-						{"Don't have an account? Sign Up"}
-					</Button>
-				</Box>
+				<Button sx={styles.signup} component={RouterLink} to={ROUTES.REGISTRATION}>
+					{"Don't have an account? Sign Up"}
+				</Button>
 			</Box>
 		</Box>
 	)

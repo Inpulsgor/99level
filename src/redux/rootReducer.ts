@@ -6,7 +6,7 @@ import loaderSlice from "entities/loader/loaderSlice";
 import authSlice from "entities/auth/authSlice";
 
 const authPersistConfig = {
-  key: "auth", // localStorage key name
+  key: "auth",
   storage,
 };
 

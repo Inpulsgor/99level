@@ -1,18 +1,28 @@
 import axios from "axios";
-import { RootState } from "redux/store";
+import { localStorageGet } from 'common/utils/misc';
 
-const BASE_URL = process.env.REACT_APP_BACKEND_API;
-
-const api = axios.create({
-  baseURL: BASE_URL,
-  withCredentials: true,
+export const instance = axios.create({
+  baseURL: process.env.REACT_APP_BACKEND_API,
 });
 
-export const interceptor = (store: { getState: () => RootState }) => {
-  api.interceptors.request.use(config => {
-    // no need to add accessToken to headers as it is in cookies
-    return config;
-  });
+export const interceptor = () => {
+  instance.interceptors.request.use((config: Record<string, any>) => {
+		const accessToken = localStorageGet('accessToken');
+
+		if (accessToken) {
+			config.headers['Authorization'] = `Bearer ${accessToken}`;
+		}
+
+		return config;
+  },
+	(error) => Promise.reject(error));
 };
 
-export default api;
+export const token = {
+  set(token: string) {
+    axios.defaults.headers.common.Authorization = `Bearer ${token}`;
+  },
+  unset() {
+    axios.defaults.headers.common.Authorization = '';
+  },
+};
