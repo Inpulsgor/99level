@@ -1,4 +1,4 @@
-import { LOADER_STATUS } from "types/enum";
+import { LOADER_STATUS } from 'types/enum';
 
 export interface LoaderState {
   isLoading: boolean;

@@ -1,16 +1,16 @@
 {
-	"layout": {
-		"footer": {
-			"copyright": "All Rights Reserved"
-		}
-	},
-	"pages": {
-		"login": {},
-		"registration": {},
-		"analytics": {},
-		"not_found": {
+  "layout": {
+    "footer": {
+      "copyright": "All Rights Reserved"
+    }
+  },
+  "pages": {
+    "login": {},
+    "registration": {},
+    "analytics": {},
+    "not_found": {
       "title": "Sorry, this page does not exist",
       "text": "You will be redirected to home page in 5 seconds"
     }
-	}
+  }
 }

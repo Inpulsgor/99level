@@ -1,14 +1,14 @@
-import { combineReducers } from "@reduxjs/toolkit";
-import { persistReducer } from "redux-persist";
-import storage from "redux-persist/lib/storage";
+import { combineReducers } from '@reduxjs/toolkit';
+import { persistReducer } from 'redux-persist';
+import storage from 'redux-persist/lib/storage';
 
-import loaderSlice from "entities/loader/loaderSlice";
-import authSlice from "entities/auth/authSlice";
+import loaderSlice from 'entities/loader/loaderSlice';
+import authSlice from 'entities/auth/authSlice';
 
 const authPersistConfig = {
-  key: "auth",
+  key: 'auth',
   storage,
-	whiteList: ["accessToken"]
+  whiteList: ['accessToken'],
 };
 
 const rootReducer = combineReducers({

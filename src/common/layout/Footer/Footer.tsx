@@ -7,7 +7,7 @@ import data from 'common/static/data.json';
 
 const Footer: FC<FooterProps> = () => {
   const currentYear = format(new Date(), 'yyyy');
-	const copyright = data.layout.footer.copyright;
+  const copyright = data.layout.footer.copyright;
 
   return (
     <Box sx={styles.footer} component="footer">

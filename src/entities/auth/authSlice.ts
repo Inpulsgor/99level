@@ -1,18 +1,18 @@
-import { createSlice } from "@reduxjs/toolkit";
-import { AuthState } from "models/auth";
-import { REQUEST_STATUS } from "types/enum";
-import { login } from "entities/auth/authOperations";
+import { createSlice } from '@reduxjs/toolkit';
+import { AuthState } from 'models/auth';
+import { REQUEST_STATUS } from 'types/enum';
+import { login } from 'entities/auth/authOperations';
 
 const initialState: AuthState = {
   isAuthenticated: false,
   accessToken: null,
-	currentUser: null,
+  currentUser: null,
   error: null,
   status: null,
 };
 
 export const authSlice = createSlice({
-  name: "auth",
+  name: 'auth',
   initialState,
   reducers: {
     updateAccessToken: (state, action) => {
@@ -26,8 +26,8 @@ export const authSlice = createSlice({
     });
     builder.addCase(login.fulfilled, (state, action) => {
       state.status = REQUEST_STATUS.SUCCEEDED;
-			state.isAuthenticated = true;
-			state.accessToken = action.payload?.data;
+      state.isAuthenticated = true;
+      state.accessToken = action.payload?.data;
     });
     builder.addCase(login.rejected, (state, action) => {
       state = {
